@@ -10,7 +10,10 @@ export class DemoService {
 
   constructor(public _httpClient: HttpClient) { }
 
-  public BASE_URL = window["baseURL"]+"/api/v1";
+
+
+  //This addr is including port
+  public BASE_URL = "http://" + window.location.host;
   public EMPLOYEE_DATA_URL = `${this.BASE_URL}/api/v1/employees`;
 
 

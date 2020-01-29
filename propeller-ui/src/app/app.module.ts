@@ -13,7 +13,7 @@ import { routes } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms'
-
+import { ProjectManagementComponent } from './AppComponent/project-management/project.managment.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +21,12 @@ import { FormsModule } from '@angular/forms'
     HomeComponent,
     DashboardComponent,
     RequestAccessComponent,
-    HeaderToolbarComponent
+    HeaderToolbarComponent,
+    ProjectManagementComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
