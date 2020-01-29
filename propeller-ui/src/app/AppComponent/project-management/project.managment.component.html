@@ -1,0 +1,220 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row" *ngIf="isProjectList">
+          <div class="col-xs-12 col-sm-12">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th sccope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of projects; let i = index;" (click)="projectSelectEvent(p)">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{p.name}}</td>
+                  <td>{{p.desc}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 15px;" *ngIf="!isProjectList">
+          <div class="col-xs-12 col-sm-12">
+            <button class="btn btn-link" type="button" (click)="isProjectList = !isProjectList">&lt;- Back</button>
+          </div>
+        </div>
+
+
+        <div class="card" style="margin-bottom: 15px;" *ngIf="!isProjectList">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-xs-6 col-sm-6">
+                <div class="form-group row">
+                  <label for="bu" class="col-sm-2 col-form-label">BU</label>
+                  <div class="col-sm-10">
+                    <input type="text" readonly class="form-control" id="bu" value="Technology" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="division" class="col-sm-2 col-form-label">Division</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="division" value="WM Technology" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="sd" class="col-sm-2 col-form-label">Super Department</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="sd" value="Global Banking Tech" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="dept" class="col-sm-2 col-form-label">Department</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dept" value="GBT Banking & Payment Services" readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6">
+                <div class="form-group row">
+                  <label for="pname" class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pname" [(ngModel)]="selectedProject.name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="pdesc" class="col-sm-2 col-form-label">Description</label>
+                  <div class="col-sm-10">
+                    <!-- <input type="text" class="form-control" id="pdesc" [(ngModel)]="selectedProject.desc"> -->
+                    <textarea class="form-control" rows="4" id="pdesc" [(ngModel)]="selectedProject.desc"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row" style="padding-top: 5px;">
+                  <label for="pemail" class="col-sm-2 col-form-label">Email</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pemial" [(ngModel)]="selectedProject.email">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" *ngIf="!isProjectList">
+          <div class="card-header">
+            Access Bundles
+          </div>
+          <div class="card-body" style="padding-bottom:0px;">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12">
+
+
+                <div class="card" *ngFor="let ab of selectedProject.accessBundles" style="margin-bottom: 15px;">
+                  <div class="card-body">
+                    <div class="form-group row">
+                      <label for="abname" class="col-sm-2 col-form-label">Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="abname" [(ngModel)]="ab.name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="abdesc" class="col-sm-2 col-form-label">Description</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="abdesc" [(ngModel)]="ab.desc">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12">
+                        <div class="card">
+                          <div class="card-header">
+                            Access Entity
+                          </div>
+                          <div class="card-body" style="padding-bottom: 15px;">
+                            <div class="row">
+                              <div class="col-xs-12 col-sm-12">
+
+                                <div class="card" *ngFor="let ae of ab.accessEntities" style="margin-bottom: 15px;">
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-xs-6 col-sm-6">
+                                        <div class="form-group row">
+                                          <label for="aetype" class="col-sm-2 col-form-label">Type</label>
+                                          <div class="col-sm-10">
+                                            <select type="text" class="form-control" id="aetype" [(ngModel)]="ae.type">
+                                              <option value="Firmwide Directory Group (n/)">Firmwide Directory Group
+                                                (n/)
+                                              </option>
+                                              <option value="TAI">TAI</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <div class="form-group row" *ngIf="!isFDG(ae)">
+                                          <label for="aeeonid" class="col-sm-2 col-form-label">EOD ID</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="aeeonid" [(ngModel)]="ae.eonId">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row" *ngIf="!isFDG(ae)">
+                                          <label for="aegrn" class="col-sm-2 col-form-label">GRN</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="aegrn" [(ngModel)]="ae.grn">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-xs-6 col-sm-6">
+                                        <div class="form-group row" *ngIf="isFDG(ae)">
+                                          <label for="aegroup" class="col-sm-2 col-form-label">Group</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="aegroup" [(ngModel)]="ae.group">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row" *ngIf="!isFDG(ae)">
+                                          <label for="aerole" class="col-sm-2 col-form-label">Role</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="aerole" [(ngModel)]="ae.role">
+                                          </div>
+                                        </div>
+                                        <div class="form-group row" *ngIf="!isFDG(ae)">
+                                          <label for="aeteam" class="col-sm-2 col-form-label">Team</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="aeteam" [(ngModel)]="ae.team">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </div>
+
+
+
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 15px;">
+                              <div class="col-xs-12 col-sm-12">
+                                <button class="btn btn-primary float-right" type="button"
+                                  (click)="addAccessEntity(ab)">Add</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 15px;">
+              <div class="col-xs-12 col-sm-12">
+                <button class="btn btn-primary float-right" type="button" (click)="addAccessBundle()">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 15px;" *ngIf="!isProjectList">
+          <div class="col-xs-12 col-sm-12">
+            <button class="btn btn-success float-right" type="button" (click)="submit()">Submit</button>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 15px;" *ngIf="isProjectList">
+          <div class="col-xs-12 col-sm-12">
+            <button class="btn btn-success float-right" type="button" (click)="newProject()">New Project</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

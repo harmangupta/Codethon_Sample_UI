@@ -10,6 +10,8 @@ import { HeaderToolbarComponent } from './AppComponent/header-toolbar/header-too
 import { TabsModule } from 'ngx-bootstrap/tabs'
 import { routes } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import { ProjectManagementComponent } from './AppComponent/project-management/project.managment.component';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -17,10 +19,12 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     DashboardComponent,
     RequestAccessComponent,
-    HeaderToolbarComponent
+    HeaderToolbarComponent,
+    ProjectManagementComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     TabsModule.forRoot()
   ],
