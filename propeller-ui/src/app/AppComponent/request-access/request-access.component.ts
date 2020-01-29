@@ -17,6 +17,8 @@ export class RequestAccessComponent implements OnInit {
       division: 'WM Technology',
       superDepartment: 'Global Banking Tech',
       department: 'GBT MSHL Technology',
+      projectSelected: 'Project 2',
+      accessBundleSelected: 'Access Bundle 3',
       projects:[{name:'Project 1'}, {name:'Project 2'}, {name:'Project 3'}],
       accessBundles:[{name:'Access Bundle 1'}, {name:'Access Bundle 2'}, {name:'Access Bundle 3'}],
       resourceList: [
@@ -27,8 +29,8 @@ export class RequestAccessComponent implements OnInit {
     }
   }
 
-  accessBundleSelected(evt) {
-    console.log(evt);//    this.selectedAccessBundle = evt.
+  makeServiceCall() {
+    //do something meaningful here
+    console.log('here');
   }
-
 }

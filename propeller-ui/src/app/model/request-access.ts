@@ -7,6 +7,8 @@ export class RequestAccess {
     division?: string;
     superDepartment?: string;
     department?: string;
+    projectSelected?: string;
+    accessBundleSelected?: string;
     projects?: Project[];
     accessBundles?: AccessBundle[];
     resourceList?: Resource[];

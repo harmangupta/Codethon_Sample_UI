@@ -41,7 +41,7 @@
               <label>Project:</label>
             </div>
             <div class="col-xs-3 col-sm-3">
-              <select name="project" class="form-control" id="project">
+              <select name="project" [(ngModel)]="requestAccess.projectSelected" class="form-control" id="project">
                 <option *ngFor="let p of requestAccess.projects" [ngValue]="p.name"> {{ p.name }} </option>
               </select>
             </div>
@@ -53,7 +53,7 @@
             </div>
             <div class="col-xs-3 col-sm-3">
 
-            <select name="accessBundle" class="form-control" id="accessBundle">
+            <select name="accessBundle" [(ngModel)]="requestAccess.accessBundleSelected" class="form-control" id="accessBundle">
               <option *ngFor="let ab of requestAccess.accessBundles" [ngValue]="ab.name"> {{ ab.name }} </option>
             </select>
 
@@ -79,9 +79,8 @@
                   <tbody>
                     <tr *ngFor="let r of requestAccess.resourceList; let i = index;">
                       <td>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" [id]="'customCheck'+i" checked>
-                            <label class="custom-control-label" [for]="'customCheck'+i"></label>
+                        <div>
+                            <input type="checkbox" [id]="'customCheck'+i" [(ngModel)]="r.isSelected"/>
                         </div>
                       </td>
                       <td>{{ r.resourceType }}</td>
@@ -97,5 +96,11 @@
         </div>
       </div>
     </div>
-    {{ requestAccess | json }}
+    <div class="col-xs-12 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <button (click)="makeServiceCall()">Initiate Process</button>
+        </div>
+      </div>
+    </div>
   </div>
