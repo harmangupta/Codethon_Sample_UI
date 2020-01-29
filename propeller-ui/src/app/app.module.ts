@@ -27,7 +27,7 @@ import { ProjectManagementComponent } from './AppComponent/project-management/pr
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { enableTracing: false, useHash: true}),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
