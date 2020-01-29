@@ -29,7 +29,7 @@ export class RequestAccessComponent implements OnInit {
     }
   }
 
-  makeSinitiateAccessRequestProcesserviceCall() {
+  initiateAccessRequestProcess() {
     //do something meaningful here
     console.log('here');
   }
